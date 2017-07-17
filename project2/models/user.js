@@ -1,8 +1,17 @@
 // models/user.js
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
+const campusTypes      = require('./campus-types');
+const departmentTypes  = require('./department-types');
 
 const UserSchema = new Schema({
+  name       :String,
+  lastname   :String,
+  campus     :campusTypes,
+  department :departmentTypes,
+  telephone  :Number,
+  isAdmin    :{type:Boolean, default:false},
+  isContributor:{type:Boolean, default:false},
   email      : String,
   username   : String,
   password   : String,
