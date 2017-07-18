@@ -1,40 +1,33 @@
 require("dotenv").config();  // for Heroku
-const express           = require('express');
-const path              = require('path');
-const favicon           = require('serve-favicon');
-const logger            = require('morgan');
-const cookieParser      = require('cookie-parser');
-const bodyParser        = require('body-parser');
-const router            = express.Router();
-const session           = require('express-session');
-const MongoStore        = require('connect-mongo')(session);
-const expressLayouts    = require('express-ejs-layouts');
-const passport          = require('passport');
-const LocalStrategy     = require('passport-local').Strategy;
-const bcrypt            = require('bcrypt');
-const mongoose          = require('mongoose');
-const flash             = require("connect-flash");
-const app               = express();
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var router = express.Router();
+const passport           = require('passport');
+const session            = require('express-session');
+const MongoStore         = require('connect-mongo')(session);
+const expressLayouts     = require('express-ejs-layouts');
+const LocalStrategy      = require('passport-local').Strategy;
+const User               = require('./models/user');
+const bcrypt             = require('bcrypt');
+const mongoose           = require('mongoose');
+const flash              = require("connect-flash");
 
-// Require model(s)
-const User              = require('./models/user');
-
-// Require route(s)
-const user_routes       = require('./routes/user_routes');
-const project_routes    = require('./routes/project_routes');
-
-const index = require('./routes/index');
-const authRoutes = require('./routes/authentication');
-const profile = require('./routes/profile');
-const information=require('./routes/information');
-//const users = require('./routes/users');
-
-
-// Stablish connection for both, local and heroku hosts
 //mongoose.connect(process.env.MONGODB_URI);
 mongoose.connect('mongodb://localhost:27017/shout-it');
 
+var index = require('./routes/index');
+//var users = require('./routes/users');
+const authRoutes = require('./routes/authentication.js');
+var profile = require('./routes/profile.js');
+var projects = require('./routes/projects.js');
 
+var information=require('./routes/information.js');
+
+var app = express();
 app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -50,7 +43,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+app.use(flash());
 
 app.use( (req, res, next) => {
   if (typeof(req.user) !== "undefined"){
@@ -66,8 +59,6 @@ app.use(session({
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })
 }));
-
-// Passport configuration
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
 });
@@ -79,53 +70,51 @@ passport.deserializeUser((id, cb) => {
   });
 });
 
-//passport.use('local-signup', new LocalStrategy(
-//  { passReqToCallback: true },
-// (req, username, password, next) => {
-//   // To avoid race conditions
-//   process.nextTick(() => {
-//        User.findOne({
-//            'username': username
-//        }, (err, user) => {
-//            if (err){ return next(err); }
-//
-//            if (user) {
-//                return next(null, false);
-//            } else {
-//                // Destructure the body
-//                const { username, email, description, password } = req.body;
-//                const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-//                const newUser = new User({
-//                  username,
-//                  email,
-//                  password: hashPass
-//                });
-//
-//                newUser.save((err) => {
-//                    if (err){ next(err); }
-//                    return next(null, newUser);
-//                });
-//            }
-//        });
-//    });
-//}));
+passport.use('local-signup', new LocalStrategy(
+  { passReqToCallback: true },
+ (req, username, password, next) => {
+   // To avoid race conditions
+   process.nextTick(() => {
+        User.findOne({
+            'username': username
+        }, (err, user) => {
+            if (err){ return next(err); }
 
-// Flash messages
-app.use(flash());
-passport.use('local-login', new LocalStrategy({
-  passReqToCallback: true
-}, (req, username, password, next) => {
+            if (user) {
+                return next(null, false);
+            } else {
+                // Destructure the body
+                const { username, email, description, password } = req.body;
+                const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+                const newUser = new User({
+                  username,
+                  email,
+                  password: hashPass
+                });
+
+                newUser.save((err) => {
+                    if (err){ next(err); }
+                    return next(null, newUser);
+                });
+            }
+        });
+    });
+}));
+
+passport.use('local-login', new LocalStrategy({ passReqToCallback: true },(req,username, password, next) => {
       User.findOne({ username }, (err, user) => {
         if (err) {
           return next(err);
         }
         if (!user) {
           return next(null, false, { message: "Incorrect username" });
+          //return next(null, false, req.flash('loginMessage', 'User does not exist'));
+
         }
         if (!bcrypt.compareSync(password, user.password)) {
           return next(null, false, { message: "Incorrect password" });
         }
-
+        console.log("user",user);
         return next(null, user);
   });
 }));
@@ -134,12 +123,8 @@ passport.use('local-login', new LocalStrategy({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-//user_routes(app);
-//project_routes(app);
-
-
 app.use('/', index);
+//app.use('/', projects);
 //app.use('/users', users);
 app.use('/', authRoutes);
 app.use('/profile', profile);
@@ -148,7 +133,7 @@ app.use('/information',information);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  const err = new Error('Not Found');
+  var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });

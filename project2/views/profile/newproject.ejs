@@ -1,30 +1,34 @@
 <% include ../partials/header %>
-<h1>New Project</h1>
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6 centered-form">
-
-        <div class="form-group">
-          <label for="title">Title</label>
-          <input type="text" name="title" class="form-control">
+    <h1>New Project</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 centered-form">
+                <form action='/profile/project' method="post">
+                    <div class="form-group">
+                        <label for="name">Name of the project</label>
+                        <input type="text" name="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="goal">Goal</label>
+                        <input type="text" name="goal" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="keywords">Main keywords</label>
+                        <textarea id="keywords" name="keywords" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="deadline">Deadline</label>
+                        <input type="date" name="deadline" class="form-control">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <button type="submit">Create Project</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-          <label for="goal">Goal</label>
-          <input type="text" name="goal" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="description">Description</label>
-          <textarea id="description" name="description" class="form-control"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="deadline">Deadline</label>
-          <input type="date" name="deadline" class="form-control">
-        </div>
-        <br>
-        <div class="form-group">
-          <button type="submit">Create Project</button>
-        </div>
-
     </div>
-  </div>
-</div>

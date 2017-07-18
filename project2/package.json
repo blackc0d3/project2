@@ -19,6 +19,7 @@
         "express": "^4.15.3",
         "express-ejs-layouts": "^2.2.0",
         "express-session": "^1.15.3",
+        "moment": "^2.18.1",
         "mongoose": "^4.11.3",
         "morgan": "~1.8.1",
         "nodemon": "^1.11.0",

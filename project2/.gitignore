@@ -19,11 +19,6 @@ sdist/
 wheels/
 
 
-
-
-
-
-
 # Media files
 
 .mp3
@@ -37,11 +32,6 @@ wheels/
 .mpg
 
 .mov
-
-
-
-
-
 
 
 # Logs

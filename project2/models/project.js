@@ -19,7 +19,6 @@ const ProjectSchema = new Schema({
     goal: String,
     deadline: Date,
     keywords: [String],
-    skills: [String],
     isPublished: {
         type: Boolean,
         default: false
@@ -28,10 +27,19 @@ const ProjectSchema = new Schema({
         type: String,
         default: "https://www.researchgate.net"
     },
+}, {
+    timestamps: {
+        createdAt: "created_at",
+        updatedAt: "updated_at"
+    }
 });
 
-ProjectSchema.set('timestamps', true);
+ProjectSchema.virtual('timeRemaining').get(function () {
+  let remaining = moment(this.deadline).fromNow(true).split(' ');
+  let [days, unit] = remaining;
+  return { days, unit };
+});
 
 const Project = mongoose.model('Project', ProjectSchema);
 
-module.express = Project;
+module.exports = Project;
