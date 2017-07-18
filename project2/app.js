@@ -20,10 +20,8 @@ const flash              = require("connect-flash");
 mongoose.connect('mongodb://localhost:27017/shout-it');
 
 var index = require('./routes/index');
-//var users = require('./routes/users');
 const authRoutes = require('./routes/authentication.js');
 var profile = require('./routes/profile.js');
-var projects = require('./routes/projects.js');
 
 var information=require('./routes/information.js');
 
@@ -124,8 +122,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', index);
-//app.use('/', projects);
-//app.use('/users', users);
 app.use('/', authRoutes);
 app.use('/profile', profile);
 app.use('/information',information);
