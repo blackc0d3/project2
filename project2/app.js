@@ -31,7 +31,8 @@ const information=require('./routes/information');
 
 
 // Stablish connection for both, local and heroku hosts
-mongoose.connect(process.env.MONGODB_URI);
+//mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect('mongodb://localhost:27017/shout-it');
 
 
 app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')));
@@ -111,7 +112,7 @@ passport.deserializeUser((id, cb) => {
 
 // Flash messages
 app.use(flash());
-passport.use('local-login', new LocalStrategy({
+passport.use('local', new LocalStrategy({
   passReqToCallback: true
 }, (req, username, password, next) => {
       User.findOne({ username }, (err, user) => {
@@ -134,8 +135,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-user_routes(app);
-project_routes(app);
+//user_routes(app);
+//project_routes(app);
 
 
 app.use('/', index);

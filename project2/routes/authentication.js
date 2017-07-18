@@ -43,7 +43,7 @@ router.post('/signup', (req, res, next) => {
         if(err){
             res.render('authentication/signup', {message:"Something went wrong"});
         } else {
-            res.redirect('/profile/profile');
+            res.redirect('/');
         }
     });
 });
@@ -54,8 +54,8 @@ router.get('/login', (req, res, next) => {
     res.render('authentication/login', {"message":req.flash("error")});
 });
 
-router.post('/login', passport.authenticate('local-login', {  // local-login is in the app.js file in passport.use configuration!
-    successRedirect: '/profile/profile',
+router.post('/login', passport.authenticate('local', {  // local-login is in the app.js file in passport.use configuration!
+    successRedirect: '/private/projects',
     failureRedirect: '/login',
     failureFlash: true,
     passReqToCallback: true
