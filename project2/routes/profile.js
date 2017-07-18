@@ -1,20 +1,26 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const Project = require('../models/project');
+const User = require('../models/user');
 const moment = require('moment');
 
-const campusTypes         = require('../models/campus-types');
-const departmentTypes     = require('../models/department-types');
-const { ensureLoggedIn }  = require('connect-ensure-login');
+const campusTypes = require('../models/campus-types');
+const departmentTypes = require('../models/department-types');
+const {
+    ensureLoggedIn
+} = require('connect-ensure-login');
 
 /* GET home page. */
 router.get('/', (req, res) => {
-  //res.render('profile/profile');
-  res.render('profile');
+    //res.render('profile/profile');
+    res.render('profile');
 });
 
 router.get('/edit', (req, res) => {
-    res.render('profile/edit',{ campusTypes, departmentTypes });
+    res.render('profile/edit', {
+        campusTypes,
+        departmentTypes
+    });
 });
 
 router.get('/projects', (req, res) => {
@@ -22,7 +28,9 @@ router.get('/projects', (req, res) => {
         .find({})
         .populate('admin')
         .exec((err, projects) => {
-            res.render('profile/allprojects', { projects });
+            res.render('profile/allprojects', {
+                projects
+            });
         });
 });
 
@@ -32,7 +40,7 @@ router.get('/newproject', (req, res) => {
 });
 
 router.post('/project', ensureLoggedIn('/login'), (req, res, next) => {
-    console.log("Dentro del post", req.body);   // REVISAR
+    console.log("Dentro del post", req.body); // REVISAR
     const newProject = new Project({
         name: req.body.name,
         description: req.body.description,
@@ -42,8 +50,8 @@ router.post('/project', ensureLoggedIn('/login'), (req, res, next) => {
 
         admin: req.user._id // the user who registers the project
     });
-    
-    console.log("NEWPROJECT", newProject);   // REVISAR
+
+    console.log("NEWPROJECT", newProject); // REVISAR
 
     newProject.save((err) => {
         if (err) {
@@ -58,16 +66,53 @@ router.post('/project', ensureLoggedIn('/login'), (req, res, next) => {
 
 
 // "/:projectID"
-router.get('/project/:id',  (req, res, next) => {   //findProject('id'),
-  Project.findById(req.params.id, (err, project) => {
-    if (err){ return next(err); }
+router.get('/project/:id', (req, res, next) => {
+    Project.findById(req.params.id, (err, project) => {
+        if (err) {
+            return next(err);
+        }
 
-    project.populate('_admin', (err, project) => {
-      if (err){ return next(err); }
-      return res.render('profile/show', { project });
+        project.populate('_admin', (err, project) => {
+            if (err) {
+                return next(err);
+            }
+            return res.render('profile/show', {
+                project
+            });
+        });
     });
-  });
 });
+
+router.post('/edit', (req, res, next) => {
+    console.log(req.params);
+    const updates = {
+        
+        name: req.body.name,
+        lastname: req.body.lastname,
+        telephone: req.body.telephone,
+        imgUrl: req.body.imgUrl, // revisar//
+        campus: req.body.campus,
+        department: req.body.department,
+        skills: req.body.skills
+    };
+    
+    console.log("parte1",req.body);
+
+    User.findByIdAndUpdate(req.body.id, updates, (err, user) => {
+        if (err) {
+            return res.render('profile/edit', {
+                user,
+                errors: user.errors
+            });
+        }
+        if (!user) {
+            return next(new Error("404"));
+        }
+        console.log("parte2");
+        return res.redirect('profile');
+    });
+});
+
 
 
 

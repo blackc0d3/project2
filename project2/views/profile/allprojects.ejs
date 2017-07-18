@@ -1,12 +1,12 @@
 <% include ../partials/header %>
 <h1>My projects</h1>
 <div class="project-row row">
-    <h3 class="text-center">You may be interested in...</h3>
+    <h3 class="text-center">Your projects</h3>  <!-- cambiar -->
     <% projects.forEach((project) => { %>
       <div class="col-sm-3 home-project-box">
-        <img src="<%= project.image %>">
+        <img src="<%= project.image %>">    
         <div class="project-info-wrapper">
-          <a class="title" href="/projects/<%= project._id %>">
+          <a class="title" href="/profile/project/<%= project._id %>">
             <strong><%= project.name %></strong>
           </a><br>
           by <span class="light-text"><%= project.admin.username %></span><br>
@@ -15,3 +15,4 @@
       </div>
     <%  }) %>
   </div>
+  

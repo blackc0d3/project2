@@ -3,18 +3,21 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-6 centered-form">
-      <form action="/users" method="post">
+      <form action="/profile/edit" method="post">
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="text" name="name" class="form-control">
+          <input type="text" name="name" class="form-control" placeholder="Name">
         </div>
         <div class="form-group">
           <label for="lastname">Lastname</label>
-          <input type="text" name="lastname" class="form-control">
+          <input type="text" name="lastname" class="form-control" placeholder="Lastname">
         </div>
         <div class="form-group">
           <label for="telephone">Telephone</label>
-          <textarea id="description" name="telephone" class="form-control"></textarea>
+          <textarea id="description" name="telephone" class="form-control" placeholder="1234567890"></textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit">Upload a picture...</button>
         </div>
         <div class="form-group">
           <label for="campus">Campus</label><br>
@@ -33,7 +36,12 @@
           </select>
         </div>
         <div class="form-group">
-          <button type="submit">Add to profile</button>
+          <label for="skills">Your main skills</label>
+          <textarea id="skills" name="skills" class="form-control" placeholder="skill1, skill2, skill3"></textarea>
+        </div>
+        
+        <div class="form-group">
+          <button type="submit">Submit changes</button>
         </div>
       </form>
     </div>

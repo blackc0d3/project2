@@ -1,4 +1,5 @@
-<div class="container project-container">
+<% include ../partials/header %>
+ <div class="container project-container">
   <div class="row">
     <div class="col-sm-2">
       <img src="https://ksr-ugc.imgix.net/assets/007/188/910/68df9ec3603e3f3138bed402dea3cab2_original.jpg?w=80&h=80&fit=crop&v=1466566705&auto=format&q=92&s=eff05acf65569368cc99f6363722fe60"><br>
@@ -21,7 +22,10 @@
         <strong class="large-strong"><%= project.contributors %></strong><br>
         <span class="light-text">Contributors</span>
       </div>
-      <a class="btn backer-btn" href="/projects/<%= project._id%>/rewards">Back This Project</a>
+      <a class="btn backer-btn" href="/projects/<%= project._id%>/rewards">Become a contributor</a>
     </div>
   </div>
 </div>
+
+
+<a class="btn btn-default" href="/profile/projects">Go back to projects</a>
