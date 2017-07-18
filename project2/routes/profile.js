@@ -1,14 +1,18 @@
-const express = require('express');
-const router = express.Router();
-const Project = require('../models/project');
-const User = require('../models/user');
-const moment = require('moment');
+const express           = require('express');
+const router            = express.Router();
+const Project           = require('../models/project');
+const User              = require('../models/user');
+const moment            = require('moment');
+const {ensureLoggedIn}  = require('connect-ensure-login');
+const multer            = require('multer');
 
-const campusTypes = require('../models/campus-types');
-const departmentTypes = require('../models/department-types');
-const {
-    ensureLoggedIn
-} = require('connect-ensure-login');
+// Models
+const campusTypes       = require('../models/campus-types');
+const departmentTypes   = require('../models/department-types');
+const Picture           = require('../models/pictures');
+
+// Upload pictures
+const upload = multer({ dest: './public/uploads/' });
 
 /* GET home page. */
 router.get('/', (req, res) => {
@@ -35,7 +39,6 @@ router.get('/projects', (req, res) => {
 });
 
 router.get('/newproject', (req, res) => {
-    console.log("ESTE ES EL RENDER"); // REVISAR
     res.render('profile/newproject');
 });
 
@@ -86,7 +89,6 @@ router.get('/project/:id', (req, res, next) => {
 router.post('/edit', (req, res, next) => {
     console.log(req.params);
     const updates = {
-        
         name: req.body.name,
         lastname: req.body.lastname,
         telephone: req.body.telephone,
@@ -113,7 +115,18 @@ router.post('/edit', (req, res, next) => {
     });
 });
 
+router.post('/edit', upload.single('photo'), function(req, res){
+    let pic;
+    pic = new Picture({
+    name: req.body.name,
+    pic_path: `/uploads/${req.file.filename}`,
+    pic_name: req.file.originalname
+  });
 
+  pic.save((err) => {
+      res.redirect('/');
+  });
+});
 
 
 
