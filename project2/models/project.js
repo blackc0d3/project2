@@ -2,15 +2,34 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ProjectSchema = new Schema({
-    name: String,
+    name: {
+        type: String,
+        required: true
+    },
     description: String,
-    admin: {type: Schema.Types.ObjectId, ref:'User'},  // default: creator (or 1st author)
-    contributors: [String],
-    keywords: [String], 
+    contributors: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    }],
+    admin: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }, // default: creator (or 1st author)
+    keywords: [String],
     skills: [String],
-    status: String
+    isPublished: {
+        type: Boolean,
+        default: false
+    },
+    pdfUrl: {
+        type: String,
+        default: "https://www.researchgate.net"
+    },
 });
 
 ProjectSchema.set('timestamps', true);
-const Project = mongoose.model('Project',ProjectSchema);
+
+const Project = mongoose.model('Project', ProjectSchema);
+
 module.express = Project;
