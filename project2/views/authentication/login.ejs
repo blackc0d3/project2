@@ -42,7 +42,12 @@
           <label for="password">Password</label>
           <input type="password" name="password" class="form-control">
         </div>
-        <input type="submit" value="Login">
+        <% if (typeof message != "undefined") { %>
+            <div class="error-message"><%= message %></div>
+        <% } %>
+        <div>
+            <input type="submit" value="Login">
+        </div>
       </form>
     </div>
   </div>

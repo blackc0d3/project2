@@ -16,6 +16,8 @@ const ProjectSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }, // default: creator (or 1st author)
+    goal: String,
+    deadline: Date,
     keywords: [String],
     skills: [String],
     isPublished: {

@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require("passport");
 
-const {ensureLoggedIn, ensureLoggedOut} = require('connect-ensure-login');
+const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -11,6 +11,7 @@ const bcryptSalt = 10;
 
 // User model
 const User = require('../models/user');
+const Project = require('../models/project');
 
 // Sign Up
 router.get('/signup', (req, res, next) => {
@@ -47,9 +48,10 @@ router.post('/signup', (req, res, next) => {
     });
 });
 
+
 // Sign In
 router.get('/login', (req, res, next) => {
-    res.render('authentication/login');
+    res.render('authentication/login', {"message":req.flash("error")});
 });
 
 router.post('/login', passport.authenticate('local-login', {  // local-login is in the app.js file in passport.use configuration!
@@ -60,33 +62,41 @@ router.post('/login', passport.authenticate('local-login', {  // local-login is 
 }));
 
 
+// Private content (projects)  -- web where some content and options are shown 
 
-router.post('/logout', (req, res) => {
+router.get('/projects', ensureLoggedIn(), (req, res, next) => {
+  res.render("/private/projects", { user: req.user });
+});
+
+
+// Privileges if they're logged in  -- create new project
+router.get('/new', ensureLoggedIn(), (req, res, next) => {
+  res.render("/profile/newproject", { user: req.user });
+});
+
+router.post('/projects', ensureLoggedIn(), (req, res, next) => {
+    const newProject = new Project ({
+        name:  req.body.title,
+        description:  req.body.description,
+        contributors: req.body.contributors,
+        admin: req.user._id,   // <-- we add the user ID
+        goal: req.body.goal,
+        deadline: req.body.deadline,
+        keywords: req.body.keywords,
+        skills: req.body.skills
+    });
+});
+
+
+// Log Out
+router.get('/logout',(req,res)=>{
     req.logout();
     res.redirect('/');
 });
 
-router.get('/login', ensureLoggedOut(), (req, res) => {
-    res.render('authentication/login');
-});
-
-router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
-    successRedirect: '/',
-    failureRedirect: '/login'
-}));
-
-router.get('/signup', ensureLoggedOut(), (req, res) => {
-    res.render('authentication/signup');
-});
-
-router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
-    successRedirect: '/',
-    failureRedirect: '/signup'
-}));
-
-router.post('/logout', ensureLoggedIn('/login'), (req, res) => {
-    req.logout();
-    res.redirect('/');
-});
+//router.post('/logout', (req, res) => {
+//    req.logout();
+//    res.redirect('/');
+//});
 
 module.exports = router;
