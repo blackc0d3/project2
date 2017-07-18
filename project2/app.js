@@ -112,7 +112,7 @@ passport.deserializeUser((id, cb) => {
 
 // Flash messages
 app.use(flash());
-passport.use('local', new LocalStrategy({
+passport.use('local-login', new LocalStrategy({
   passReqToCallback: true
 }, (req, username, password, next) => {
       User.findOne({ username }, (err, user) => {

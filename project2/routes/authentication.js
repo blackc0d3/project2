@@ -51,10 +51,10 @@ router.post('/signup', (req, res, next) => {
 
 // Sign In
 router.get('/login', (req, res, next) => {
-    res.render('authentication/login', {"message":req.flash("error")});
+    res.render('authentication/login', {message:req.flash("error")});
 });
 
-router.post('/login', passport.authenticate('local', {  // local-login is in the app.js file in passport.use configuration!
+router.post('/login', passport.authenticate('local-login', {  // local-login is in the app.js file in passport.use configuration!
     successRedirect: '/private/projects',
     failureRedirect: '/login',
     failureFlash: true,
@@ -65,7 +65,7 @@ router.post('/login', passport.authenticate('local', {  // local-login is in the
 // Private content (projects)  -- web where some content and options are shown 
 
 router.get('/projects', ensureLoggedIn(), (req, res, next) => {
-  res.render("/private/projects", { user: req.user });
+  res.render("/profile/profile", { user: req.user });
 });
 
 
