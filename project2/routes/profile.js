@@ -14,11 +14,6 @@ const Picture           = require('../models/pictures');
 // Upload pictures
 const upload = multer({ dest: './public/uploads/' });
 
-/* GET home page. */
-router.get('/', (req, res) => {
-    //res.render('profile/profile');
-    res.render('profile');
-});
 
 router.get('/edit', (req, res) => {
     res.render('profile/edit', {
@@ -113,30 +108,31 @@ router.post('/edit', (req, res, next) => {
 });
 
 router.post('/', upload.single('photo'), function(req, res){
-    const userId = req.user._id;
-    console.log("este es el ID",userId);
+    const filename  = req.file.filename;
+    const extension = req.file.mimetype.split('/')[1];
+    
     let pic;
     pic = new Picture({
-//    name: req.body.name,
-    pic_path: `/uploads/${req.file.filename}`,
-    pic_name: req.file.originalname
-  });
-    
-    console.log("IMG NAME",req.file.filename);
-    
-    const update = {
-        img: req.file.filename
-    };
-    console.log(update);
-    
+        name: req.body.name,
+        pic_path: `/uploads/${filename}.${extension}`,
+        pic_name: req.file.originalname
+    });
 
-  pic.save((err) => {
-
-      res.redirect('/information');
-  });
+    //    const userId = req.user._id;
+    //    const update = {
+    //        img: req.file.filename
+    //    };
+    //    console.log(update);
+    pic.save((err) => {
+        res.redirect('/information');
+    });
 });
 
-
+router.get('/', function(req, res, next) {
+  Picture.find((err, pictures) => {
+    res.render('profile', {pictures})
+  })
+});
 
 
 module.exports = router;
