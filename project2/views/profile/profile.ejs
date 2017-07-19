@@ -1,6 +1,17 @@
 <% include ../partials/header %>
-<h1>Hello <%= user.username %></h1>
-<ul>
-  <li><a href="/profile/edit">Edit your profile</a></li>
-  <li><a href="/profile/projects">Projects</a></li>
-</ul>
+    <h1>Hello
+        <%= user.username %>
+    </h1>
+    <ul>
+        <li><a href="/profile/edit">Edit your profile</a></li>
+        <li><a href="/profile/projects">Projects</a></li>
+    </ul>
+
+    <div class="form-group">
+        <h2>Upload your photo</h2>
+        <form action="/profile" method="post" enctype="multipart/form-data">
+            <input type="text" name="name">
+            <input type="file" name="photo">
+            <button type="submit">Upload a picture...<span class="glyphicon glyphicon-picture"></span></button>
+        </form>
+    </div>

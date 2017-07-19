@@ -34,11 +34,11 @@ const ProjectSchema = new Schema({
     }
 });
 
-ProjectSchema.virtual('timeRemaining').get(function () {
-  let remaining = moment(this.deadline).fromNow(true).split(' ');
-  let [days, unit] = remaining;
-  return { days, unit };
-});
+//ProjectSchema.virtual('timeRemaining').get(function () {
+//  let remaining = moment(this.deadline).fromNow(true).split(' ');
+//  let [days, unit] = remaining;
+//  return { days, unit };
+//});
 
 const Project = mongoose.model('Project', ProjectSchema);
 
