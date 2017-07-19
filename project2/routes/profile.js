@@ -18,6 +18,8 @@ const upload = multer({
     dest: './public/uploads/'
 });
 
+
+
 router.get('/edit', (req, res) => {
     res.render('profile/edit', {
         campusTypes,
@@ -25,6 +27,7 @@ router.get('/edit', (req, res) => {
     });
 });
 
+// All the projects
 router.get('/projects', (req, res) => {
     Project
         .find({})
@@ -35,6 +38,25 @@ router.get('/projects', (req, res) => {
             });
         });
 });
+
+
+// All the projects of one user
+router.get('/myprojects', (req, res) => {
+    console.log(req.user._id);
+    User    
+        .findById(req.user._id)
+        .populate('projects')
+        .exec((err, users) => {
+            res.render('profile/myprojects', {
+                users
+            });
+        console.log(users);
+        });
+});
+
+
+
+
 
 router.get('/newproject', (req, res) => {
     res.render('profile/newproject');
@@ -49,7 +71,8 @@ router.post('/project', ensureLoggedIn('/login'), (req, res, next) => {
         keywords: req.body.keywords,
         deadline: req.body.deadline,
 
-        admin: req.user._id // the user who registers the project
+        admin: req.user._id, // the user who registers the project
+        contributors: req.user._id  // the admin is also a contributor 
     });
 
     newProject.save((err) => {
@@ -58,7 +81,11 @@ router.post('/project', ensureLoggedIn('/login'), (req, res, next) => {
                 project: newProject
             });
         } else {
-            res.redirect(`/profile/${newProject._id}`);
+            User.findById(req.user._id).exec((err, user) => {
+                user.projects.push(newProject);
+                user.save();
+                res.redirect(`/profile/project/${newProject._id}`);
+            });
         }
     });
 });
@@ -108,12 +135,10 @@ router.post('/edit', (req, res, next) => {
     });
 });
 
-router.post('/', upload.single('photo'), function (req, res) {
+router.post('/', upload.single('photo'), function (req, res,next) {
     const userId = req.user._id;
     const filename = req.file.filename;
-    console.log(filename)
-    console.log(req.file)
-
+    
     let pic;
     pic = new Picture({
         name: req.body.name,
@@ -123,7 +148,7 @@ router.post('/', upload.single('photo'), function (req, res) {
 
     var filePath = {
         pic_path: `/uploads/${filename}`
-    }
+    };
 
     pic.save((err) => {
         User.findByIdAndUpdate(userId, filePath, {
@@ -138,7 +163,6 @@ router.post('/', upload.single('photo'), function (req, res) {
             if (!user) {
                 return next(new Error("404"));
             }
-            console.log(user)
             return res.redirect('/profile/myprofile');
         });
     });
@@ -154,8 +178,6 @@ router.get('/myprofile', (req, res) => {
             picture: lastPic
         });
     });
-
 });
-
 
 module.exports = router;

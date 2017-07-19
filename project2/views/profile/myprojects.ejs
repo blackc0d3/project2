@@ -1,15 +1,15 @@
 <% include ../partials/header %>
-    <h1>Available projects</h1>
+    <h1>Your activity</h1>
     <div class="project-row row">
         <h2 class="text-center">Current projects</h2>
         <!-- cambiar -->
-        <% projects.forEach((project) => { %>
+        <% users.projects.forEach((project) => { %>
             <div class="col-sm-3 home-project-box">
                 <img src="<%= project.image %>">
                 <div class="project-info-wrapper">
                     <a class="title" href="/profile/project/<%= project._id %>">
                         <strong><%= project.name %></strong>
-                    </a><br> by <span class="light-text"><%= project.admin.username %></span>
+                    </span>
                     <br>
                     <div>
                         <h5>Description:</h5>
