@@ -1,19 +1,22 @@
-const express           = require('express');
-const router            = express.Router();
-const moment            = require('moment');
-const {ensureLoggedIn}  = require('connect-ensure-login');
-const multer            = require('multer');
+const express = require('express');
+const router = express.Router();
+const moment = require('moment');
+const {
+    ensureLoggedIn
+} = require('connect-ensure-login');
+const multer = require('multer');
 
 // Models
-const Project           = require('../models/project');
-const User              = require('../models/user');
-const campusTypes       = require('../models/campus-types');
-const departmentTypes   = require('../models/department-types');
-const Picture           = require('../models/pictures');
+const Project = require('../models/project');
+const User = require('../models/user');
+const campusTypes = require('../models/campus-types');
+const departmentTypes = require('../models/department-types');
+const Picture = require('../models/pictures');
 
 // Upload pictures
-const upload = multer({ dest: './public/uploads/' });
-
+const upload = multer({
+    dest: './public/uploads/'
+});
 
 router.get('/edit', (req, res) => {
     res.render('profile/edit', {
@@ -48,8 +51,6 @@ router.post('/project', ensureLoggedIn('/login'), (req, res, next) => {
 
         admin: req.user._id // the user who registers the project
     });
-
-    console.log("NEWPROJECT", newProject); // REVISAR
 
     newProject.save((err) => {
         if (err) {
@@ -92,7 +93,7 @@ router.post('/edit', (req, res, next) => {
         department: req.body.department,
         skills: req.body.skills
     };
-    
+
     User.findByIdAndUpdate(userId, updates, (err, user) => {
         if (err) {
             return res.render('profile/edit', {
@@ -103,35 +104,57 @@ router.post('/edit', (req, res, next) => {
         if (!user) {
             return next(new Error("404"));
         }
-        return res.redirect('/profile');
+        return res.redirect('/profile/myprofile');
     });
 });
 
-router.post('/', upload.single('photo'), function(req, res){
-    const filename  = req.file.filename;
-    const extension = req.file.mimetype.split('/')[1];
-    
+router.post('/', upload.single('photo'), function (req, res) {
+    const userId = req.user._id;
+    const filename = req.file.filename;
+    console.log(filename)
+    console.log(req.file)
+
     let pic;
     pic = new Picture({
         name: req.body.name,
-        pic_path: `/uploads/${filename}.${extension}`,
+        pic_path: `/uploads/${filename}`,
         pic_name: req.file.originalname
     });
 
-    //    const userId = req.user._id;
-    //    const update = {
-    //        img: req.file.filename
-    //    };
-    //    console.log(update);
+    var filePath = {
+        pic_path: `/uploads/${filename}`
+    }
+
     pic.save((err) => {
-        res.redirect('/information');
+        User.findByIdAndUpdate(userId, filePath, {
+            new: true
+        }, (err, user) => {
+            if (err) {
+                return res.render('profile/edit', {
+                    user,
+                    errors: user.errors
+                });
+            }
+            if (!user) {
+                return next(new Error("404"));
+            }
+            console.log(user)
+            return res.redirect('/profile/myprofile');
+        });
     });
 });
 
-router.get('/', function(req, res, next) {
-  Picture.find((err, pictures) => {
-    res.render('profile', {pictures})
-  })
+router.get('/myprofile', (req, res) => {
+    var user = req.user;
+
+    Picture.find((err, pictures) => {
+        var lastPic = pictures[pictures.length - 1];
+        res.render('profile/myprofile', {
+            user,
+            picture: lastPic
+        });
+    });
+
 });
 
 

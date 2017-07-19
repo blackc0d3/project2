@@ -1,0 +1,24 @@
+<% include ../partials/header %>
+<h1>My profile</h1>
+<br>
+<div class="upper-container">
+  <h2 id="Name"><%= user.name %> <%= user.lastname %></h2>
+</div>
+
+<div class="middle-container">
+
+<div class="left-side">
+  <section>
+    <img id="profilepic" src="<%= picture.pic_path %>" alt="<%= picture.pic_name %>" />
+ </section>
+</div>
+
+<div class="right-side">
+  <h2 class="myprofile telephone">Telephone: <%= user.telephone %></h2>
+  <h2 class="myprofile campus">Campus: <%= user.campus %></h2>
+  <h2 class="myprofile department">Department: <%= user.department %></h2>
+  <h2 class="myprofile email">Email: <%= user.email %></h2>
+  <h2 class="myprofile skills">Skills: <%= user.skills %></h2>
+</div>
+
+</div>

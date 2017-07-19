@@ -1,5 +1,8 @@
-var express = require('express');
-var router = express.Router();
+// Packages
+const express = require('express');
+const router = express.Router();
+
+// Models
 const Project = require('../models/project');
 
 /* GET home page. */

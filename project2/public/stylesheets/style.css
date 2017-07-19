@@ -159,3 +159,42 @@ progress {
 .project-description {
   padding-right: 275px;
 }
+#Name{
+  text-align: center;
+  text-transform: uppercase;
+  color:#832161;
+}
+
+.myprofile{
+  text-align: left;
+  padding-left: 4%;
+}
+.upper-container{
+  border: 1px solid blue;
+  margin-left:50px;
+}
+.middle-container {
+  margin-left:50px;
+  padding:5%;
+  width:80vw;
+  height:60vh;
+  border:1px solid yellow;
+}
+
+.left-side{
+  width:50%;
+  height:30vh;
+  border: 1px solid red;
+  float:left;
+}
+
+.right-side{
+  width:50%;
+  height:30vh;
+  border: 1px solid blue;
+  float:left;
+}
+#profilepic{
+  max-width: 30%;
+  margin-left: 50px;
+}
