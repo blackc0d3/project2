@@ -1,10 +1,12 @@
 <% include ../partials/header2 %>
     <h1>Your activity</h1>
     <div class="project-row row">
-        <h2 class="text-center myprojects-title">Current projects</h2>
+        <h2 class="text-center myprojects-title">Current projects<%= users %></h2>
+        
         <!-- cambiar -->
+        
         <% users.projects.forEach((project) => { %>
-
+                
             <div class="col-sm-3 home-project-box project-container">
                 <div class="title-project">
                     <a class="title" href="/profile/project/<%= project._id %>">
