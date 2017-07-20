@@ -1,4 +1,4 @@
-<% include ../partials/header %>
+<% include ../partials/header2 %>
     <h1>Available projects</h1>
     <div class="project-row row">
         <h2 class="text-center">Current projects</h2>
@@ -9,7 +9,13 @@
                 <div class="project-info-wrapper">
                     <a class="title" href="/profile/project/<%= project._id %>">
                         <strong><%= project.name %></strong>
-                    </a><br> by <span class="admin"><%= project.admin.name + '  ' + project.admin.lastname %></span>
+                    </a><br> by <span class="admin"><%
+                    if(project.admin.name || project.admin.lastname){%>
+                        <%= project.admin.name + '  ' + project.admin.lastname %>
+                        <% } else {%>
+                        <%= project.admin.username%>
+                        <% } %>
+                    </span>
                     <br>
                     <div>
                         <h5>Description:</h5>
@@ -24,5 +30,5 @@
             </div>
             <%  }) %>
     </div>
-    
-<!-- AÑADIR UN IF PARA CUANDO NO HAYA NOMBRE O APELLIDOS SE PONGA EL USERNAME-->
+
+    <!-- AÑADIR UN IF PARA CUANDO NO HAYA NOMBRE O APELLIDOS SE PONGA EL USERNAME-->

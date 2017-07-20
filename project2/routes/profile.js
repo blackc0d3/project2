@@ -31,6 +31,8 @@ router.get('/projects', (req, res) => {
         .find({})
         .populate('admin')
         .exec((err, projects) => {
+            // CHECK KIND OF PROJECT 
+            // ADD A NEW KEY FOR THE IMAGE TYPE
             res.render('profile/allprojects', {
                 projects
             });
@@ -169,7 +171,7 @@ router.post('/', upload.single('photo'), function (req, res, next) {
             if (!user) {
                 return next(new Error("404"));
             } 
-            return res.redirect('/profile/myprofile');
+            return res.redirect('/profile');
         });
     });
 });

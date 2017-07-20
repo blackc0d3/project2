@@ -200,8 +200,10 @@ progress {
 
 .welcome-msg{
     width:90vw;
+    height: 30vh;
     padding: 5% 0 10% 5%;
-    color: red;
+    color: darkslategray;
+    border: 1px solid red;
 }
 
 .user-pic-profile > img {
@@ -210,6 +212,31 @@ progress {
     border-radius:50%;
     width: 150px;
     height: 150px;
+    border: 1px solid red;
+}
+
+.image-upload-container{
+    width: 30vw;
+    border: 1px solid blue;
+}
+
+.image-upload-container > img {
+    float: left;
+    object-fit: cover;
+    border-radius:50%;
+    width: 150px;
+    height: 150px;
+    border: 1px solid red;
+}
+
+.choose-pic-button {
+    width: 10vw;
+    float: left;
+    border: 1px solid green;
+}
+
+.upload-pic-button {
+    border: 1px solid red;
     
 }
 
