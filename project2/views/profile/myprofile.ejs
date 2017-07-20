@@ -1,3 +1,4 @@
+
 <% include ../partials/header %>
 <h1>My profile</h1>
 <br>
@@ -9,10 +10,7 @@
 
 <div class="left-side">
   <section>
-  <% pictures.forEach(function(picture) { %>
-    <h3><%= picture.name %></h3>
-    <img id="profilepic" src="<%= picture.pic_path %>" alt="<%= picture.pic_name %>" />
-  <% })%>
+    <img id="profilepic" src="<%= user.pic_path %>" alt="<%= user.pic_name %>" />
  </section>
 </div>
 

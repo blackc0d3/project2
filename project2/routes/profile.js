@@ -56,7 +56,7 @@ router.post('/project', ensureLoggedIn('/login'), (req, res, next) => {
                 project: newProject
             });
         } else {
-            res.redirect(`/profile/${newProject._id}`);
+            res.redirect(`/profile/project/${newProject._id}`);
         }
     });
 });
@@ -113,19 +113,20 @@ router.post('/', upload.single('photo'), function(req, res){
     let pic;
     pic = new Picture({
     name: req.body.name,
-    pic_path: `/uploads/${filename}.${extension}`,
+    pic_path: `/uploads/${filename}`,
     pic_name: req.file.originalname
   });
 
   pic.save((err) => {
-    res.redirect('/information');
+    res.redirect('/profile/myprofile');
   });
 });
 
 router.get('/myprofile', (req, res) => {
     var user = req.user;
     Picture.find((err, pictures) => {
-      res.render('profile/myprofile' , {user, pictures} );
+      var lastPic = pictures[pictures.length-1];
+      res.render('profile/myprofile' , {user, picture: lastPic} );
     });
 });
 

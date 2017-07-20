@@ -1,33 +1,33 @@
 <nav class="navbar">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#home-nav" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-
-        <div class="collapse navbar-collapse" id="home-nav">
-            <ul class="nav navbar-nav">
-
-                <li class="nav-logo">
-                    <img class="nav-logo-image" src="/images/megaphone.png" alt="Shout it Logo">
-                    <span>Shout it!</span>  <!-- A cambiar cuando el logo sea una imagen con nombre -->
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </a>
-                </li>
-                <li><a href="/login"><span class="glyphicon glyphicon-lock"></span>Login</a></li>
-                <li><a href="/signup">Signup</a></li>
-            </ul>
-        </div>
+  <div class="container-fluid-top">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#home-nav" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
     </div>
+
+    <div class="collapse navbar-collapse" id="home-nav">
+        <ul class="nav navbar-nav">
+            <li class="nav-logo">
+              <a class="img-logo" href="/">
+                <img class="nav-logo-image" src="/images/logo_720.png" alt="Shout it Logo">
+              </a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="#">
+                    <span class="glyphicon glyphicon-search"></span>
+                </a>
+            </li>
+            <li><a href="/login"><span class="glyphicon glyphicon-lock"></span>Login</a></li>
+            <li><a href="/signup">Signup</a></li>
+        </ul>
+    </div>
+</div>
 </nav>
 
 <!-- views/index.ejs -->
@@ -41,20 +41,3 @@
         </div>
     </div>
 </div>
-
-<!--
-<div class="project-row row">
-    <h3 class="text-center">You may be interested in...</h3>
-    <% projects.forEach((project) => { %>
-        <div class="col-sm-3 home-project-box">
-            <img src="<%= project.image %>">
-            <div class="project-info-wrapper">
-                <a class="title" href="/projects/<%= project._id %>">
-                    <strong><%= project.name %></strong>
-                </a><br> by <span class="light-text"><%= project.admin.username %></span><br>
-                <span class="light-text description"><%= project.description %></span>
-            </div>
-        </div>
-        <%  }) %>
-</div>
--->

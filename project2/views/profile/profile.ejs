@@ -1,11 +1,13 @@
 <% include ../partials/header %>
-    <h1>Hello
-        <%= user.username %>
-    </h1>
-    <ul>
-        <li><a href="/profile/edit">Edit your profile</a></li>
-        <li><a href="/profile/projects">Projects</a></li>
-    </ul>
+<div class="container-signup">
+  <div class="hello">
+    <h1>Hello<%= user.username %></h1>
+  </div>
+<div class="functions">
+      <li><a href="/profile/edit">Edit your profile</a></li>
+      <li><a href="/profile/projects">Projects</a></li>
+</div>
+
 
     <div class="form-group">
         <h2>Upload your photo</h2>
@@ -15,3 +17,4 @@
             <button type="submit">Upload a picture...<span class="glyphicon glyphicon-picture"></span></button>
         </form>
     </div>
+</div>
