@@ -149,10 +149,6 @@ a {
     text-transform: uppercase;
 }
 
-.project-info-wrapper > .admin:first-letter {
-    text-transform: uppercase;
-}
-
 .project-image {
   width: 100%;
   height: 500px;
