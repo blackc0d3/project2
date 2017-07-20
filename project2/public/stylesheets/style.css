@@ -1,10 +1,11 @@
 body {
-  padding: 3%;
+/*  padding: 3%;*/
   font: 14px 'Open Sans', sans-serif;
 }
 
 .text-center {
     font-size: 1.5rem;
+    text-align: center;
 }
 
 nav.navbar {
@@ -38,9 +39,16 @@ nav.navbar {
   padding-top: 15px;
 }
 
+.login{
+    font-weight: bolder;
+    color: darkslategray;
+}
+
 .home-heading {
   background-color: #E3ECFA;  /* color fondo index */
-  height: 75vh;
+  width:85vw;
+  height:75vh;
+    margin: 0 auto;
   padding: 0 30%;
   position: relative;
 }
@@ -54,7 +62,7 @@ nav.navbar {
 }
 .home-heading-wrapper > h1 {
     font-size: 9rem;
-    color:#832161;
+    color: #832161;   /* color moradito cool jaja*/
 }
 p {
     font-size: 3vh;
@@ -63,8 +71,39 @@ a {
   color: #832161;
 }
 
-.btn-default{  /* read more button*/
-    border-radius:15%;
+.info-container{  /*container information*/
+    width: 100vw;
+    height: auto;
+    padding: 5% 10% 0% 10%;
+}
+
+.container-fluid{
+    padding-top: 0.1%;
+}
+
+.info-title{   /* info titles */
+    color:#832161;   /* color moradito cool jaja*/
+    box-shadow: 0px 4px 10px 0 rgba(22,22,22,0.2);
+    background-color: #E3ECFA;
+    padding: 1%;
+    width: 50%;
+}
+
+.join-button{   /* join now button */
+    width: 25vh;
+    color:#832161;   /* color moradito cool jaja*/
+    margin: 0 auto;  /* how to allign something in the center */
+}
+
+.btn-default {  /* read more button*/
+    border-radius:5px;
+    background-color: ghostwhite;
+    color: #333;
+    padding: 2%;
+}
+
+.btn-default:hover {  /* read more button*/
+    border-radius:5px;
     background-color: darkslategray;
     color: ghostwhite;
     padding: 2%;
@@ -75,15 +114,19 @@ a {
 }
 
 .home-project-box {
+    float: left;
   border: 1px solid #d3d3d3;
   height: 300px;
   margin: 30px 4%;
   padding: 0;
+
 }
 
 .home-project-box img {
-  width: 100%;
-  height: 45%;
+    width: 30%;
+    height: 45%;
+    object-fit: cover;
+    align-content: center;
 }
 
 .project-info-wrapper {
@@ -98,7 +141,16 @@ a {
 
 .project-info-wrapper > .title {
   color: black;
-  font-size: 1.1em;
+  font-size: 1.5em;
+}
+
+.project-info-wrapper > .admin{
+    color: #832161;
+    text-transform: uppercase;
+}
+
+.project-info-wrapper > .admin:first-letter {
+    text-transform: uppercase;
 }
 
 .project-image {
@@ -130,6 +182,113 @@ progress {
 .project-container .row { /* REV*/
   padding: 35px 0;
 }
+
+/* ######## */
+.title-signin{  /*log in welcome*/
+    width:100vw;
+    padding: 1vh 5vw;
+}
+
+.login-container{  /*log in form*/
+    padding: 3% 0;
+    
+}
+
+.no-account{
+    font-size: 1.8rem;
+    padding-left: 5%;
+}
+.no-account > a {
+    color: #832161
+}
+
+.welcome-msg{
+    width:90vw;
+    padding: 5% 0 10% 5%;
+    color: red;
+}
+
+.user-pic-profile > img {
+    float: left;
+    object-fit: cover;
+    border-radius:50%;
+    width: 150px;
+    height: 150px;
+    
+}
+
+.hello{
+    height:auto;
+    float: left;
+    width: auto;
+    font-size: 5vw;
+    color: darkslategray;
+    padding-top: 2%;
+    padding-left:4%;
+}
+
+.username {
+    font-size: 5vw;
+    float: left;
+    color: #832161;
+    padding-top: 2%;
+    text-transform: lowercase;
+}
+
+.username:first-letter {
+    text-transform: uppercase;
+}
+
+.pic-update{
+    width: 20vw;
+    float: right;
+}
+
+/*
+.form-group {
+    
+    
+    height
+    
+}
+*/
+
+.user-options{
+    clear: both;
+    width: 80vw;
+    height: 60vh;
+    clear: both;
+    font-size: 2rem;
+    padding: 5%;
+    margin: 0 auto;
+}
+
+.option-box{
+    float: left;
+    width: 50%;
+    height: 50%;
+    text-align: center;
+    
+}
+.option-box > a{  
+    padding: 10%;
+    border: 1px solid darkslategray;
+    background-color: #E3ECFA;
+    border-radius: 15px;
+    position: relative;
+    top: 45%;
+    font: 1.5rem;
+    color:darkslategray;
+}
+
+
+
+
+
+
+
+
+
 
 .backer-btn {
   background-color: #25CB68;
@@ -186,7 +345,19 @@ progress {
   height:30vh;
   border: 1px solid red;
   float:left;
+  text-align: center;
+
 }
+
+.left-side > img {
+  object-fit: cover;
+  border-radius:50%;
+  width: 150px;
+  height: 150px;
+}
+
+
+
 
 .right-side{
   width:50%;

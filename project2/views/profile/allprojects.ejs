@@ -5,11 +5,11 @@
         <!-- cambiar -->
         <% projects.forEach((project) => { %>
             <div class="col-sm-3 home-project-box">
-                <img src="<%= project.image %>">
+                <img src="<%= project.admin.pic_path %>">
                 <div class="project-info-wrapper">
                     <a class="title" href="/profile/project/<%= project._id %>">
                         <strong><%= project.name %></strong>
-                    </a><br> by <span class="light-text"><%= project.admin.username %></span>
+                    </a><br> by <span class="admin"><%= project.admin.name + '  ' + project.admin.lastname %></span>
                     <br>
                     <div>
                         <h5>Description:</h5>
@@ -24,3 +24,5 @@
             </div>
             <%  }) %>
     </div>
+    
+<!-- AÑADIR UN IF PARA CUANDO NO HAYA NOMBRE O APELLIDOS SE PONGA EL USERNAME-->

@@ -18,8 +18,6 @@ const upload = multer({
     dest: './public/uploads/'
 });
 
-
-
 router.get('/edit', (req, res) => {
     res.render('profile/edit', {
         campusTypes,
@@ -42,15 +40,13 @@ router.get('/projects', (req, res) => {
 
 // All the projects of one user
 router.get('/myprojects', (req, res) => {
-    console.log(req.user._id);
-    User    
+    User
         .findById(req.user._id)
         .populate('projects')
         .exec((err, users) => {
             res.render('profile/myprojects', {
                 users
             });
-        console.log(users);
         });
 });
 
@@ -63,7 +59,6 @@ router.get('/newproject', (req, res) => {
 });
 
 router.post('/project', ensureLoggedIn('/login'), (req, res, next) => {
-    console.log("Dentro del post", req.body); // REVISAR
     const newProject = new Project({
         name: req.body.name,
         description: req.body.description,
@@ -72,7 +67,7 @@ router.post('/project', ensureLoggedIn('/login'), (req, res, next) => {
         deadline: req.body.deadline,
 
         admin: req.user._id, // the user who registers the project
-        contributors: req.user._id  // the admin is also a contributor 
+        contributors: req.user._id // the admin is also a contributor 
     });
 
     newProject.save((err) => {
@@ -81,10 +76,12 @@ router.post('/project', ensureLoggedIn('/login'), (req, res, next) => {
                 project: newProject
             });
         } else {
-            User.findById(req.user._id).exec((err, user) => {
-                user.projects.push(newProject);
-                user.save();
-                res.redirect(`/profile/project/${newProject._id}`);
+            User
+                .findById(req.user._id)
+                .exec((err, user) => {
+                    user.projects.push(newProject);
+                    user.save();
+                    res.redirect(`/profile/project/${newProject._id}`);
             });
         }
     });
@@ -102,9 +99,14 @@ router.get('/project/:id', (req, res, next) => {
             if (err) {
                 return next(err);
             }
-            return res.render('profile/show', {
-                project
+            Picture.find((err, pictures) => {
+                var lastPic = pictures[pictures.length - 1];
+                res.render('profile/show', {
+                    picture: lastPic,
+                    project
+                });
             });
+
         });
     });
 });
@@ -135,10 +137,12 @@ router.post('/edit', (req, res, next) => {
     });
 });
 
-router.post('/', upload.single('photo'), function (req, res,next) {
+
+// Profile
+router.post('/', upload.single('photo'), function (req, res, next) {
     const userId = req.user._id;
     const filename = req.file.filename;
-    
+
     let pic;
     pic = new Picture({
         name: req.body.name,
@@ -149,6 +153,8 @@ router.post('/', upload.single('photo'), function (req, res,next) {
     var filePath = {
         pic_path: `/uploads/${filename}`
     };
+    
+
 
     pic.save((err) => {
         User.findByIdAndUpdate(userId, filePath, {
@@ -162,12 +168,14 @@ router.post('/', upload.single('photo'), function (req, res,next) {
             }
             if (!user) {
                 return next(new Error("404"));
-            }
+            } 
             return res.redirect('/profile/myprofile');
         });
     });
 });
 
+
+// My profile details
 router.get('/myprofile', (req, res) => {
     var user = req.user;
 

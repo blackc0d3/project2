@@ -1,18 +1,40 @@
 <% include ../partials/header %>
-    <h1>Hello
-        <%= user.username %>
-    </h1>
-    <ul>
-        <li><a href="/profile/edit">Edit your profile</a></li>
-        <li><a href="/profile/projects">All Projects</a></li>
-        <li><a href="/profile/myprojects">My Projects</a></li>
-    </ul>
 
-    <div class="form-group">
-        <h2>Upload your photo</h2>
-        <form action="/profile" method="post" enctype="multipart/form-data">
-            <input type="text" name="name">
-            <input type="file" name="photo">
-            <button type="submit">Upload a picture...<span class="glyphicon glyphicon-picture"></span></button>
-        </form>
+    <div class="welcome-msg">
+        <div class="user-pic-profile">
+            <img id="profilepic" src="<%= user.pic_path %>" alt="<%= user.pic_name %>" />
+        </div>
+        <div class="hello">
+            Hello&nbsp;&nbsp;
+        </div>
+        <div class="username">
+            <%= user.username %>
+        </div>
+
+        <div class="pic-update">
+            <div class="form-group">
+                <h2>Upload your photo</h2>
+                <form action="/profile" method="post" enctype="multipart/form-data">
+                    <input type="text" name="name">
+                    <input type="file" name="photo">
+                    <button type="submit">Upload a picture...<span class="glyphicon glyphicon-picture"></span></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="user-options">
+        <div class="option-box">
+            <a href="/profile/myprofile">Check your Profile&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-user"></span></a>
+        </div>
+        <div class="option-box">
+            <a href="/profile/projects">All Projects&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span></a>
+        </div>
+        <div class="option-box">
+            <a href="/profile/myprojects">My Projects&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span></a>
+        </div>
+        <div class="option-box">
+            <a href="/profile/newproject">Start a project&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-list-alt"></span></a>
+        </div>
     </div>

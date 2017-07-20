@@ -1,5 +1,6 @@
 <nav class="navbar">
     <div class="container-fluid">
+<!--
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#home-nav" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
@@ -8,6 +9,7 @@
             <span class="icon-bar"></span>
           </button>
         </div>
+-->
 
         <div class="collapse navbar-collapse" id="home-nav">
             <ul class="nav navbar-nav">
@@ -23,13 +25,22 @@
                         <span class="glyphicon glyphicon-search"></span>
                     </a>
                 </li>
-                <li><a href="/login">Login</a></li>
+                <li>
+                    <a href="/">&nbsp;<span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Home</a>
+                    </li>                
+                <li><a href="/login">&nbsp;<span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Login</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="container">
+<div class="title-signin">
+    <div class="info-title">
+        <h1>We are almost there!</h1>
+    </div>
+</div>
+
+<div class="login-container container">
     <div class="row">
         <div class="col-sm-6 centered-form">
             <form action="/signup" method="post">
@@ -47,14 +58,14 @@
                 </div>
                 <% if (typeof message !== "undefined") { %>
                     <div class="error-message"><%= message %></div>
-                <% } %>
+                <% } %>  <!-- Revisar si esto no era de flash -->
                 <br><br>
                 <div>
-                    <input type="submit" value="Sign Up">
+                    <input class="login btn btn-default" type="submit" value="Sign Up">
                 </div>
             </form>
         </div>
     </div>
 </div>
 <br>
-<h6>Already have an account? <a href="/login">Login here</a></h6>
+<div class="no-account">Already have an account?&nbsp;&nbsp;<a href="/login">Login here&nbsp;<span class="glyphicon glyphicon-log-in"></span></a></div>
