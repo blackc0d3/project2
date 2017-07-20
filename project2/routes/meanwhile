@@ -1,5 +1,0 @@
-<!--
-        <div class="left-side">
-            <img id="profilepic" src="<%= picture.pic_path %>" alt="<%= picture.pic_name %>" />
-        </div>
--->

@@ -61,6 +61,12 @@ router.get('/newproject', (req, res) => {
 });
 
 router.post('/project', ensureLoggedIn('/login'), (req, res, next) => {
+//    const shortDate = new Date();
+//    dt.getFullYear() + "/" + (dt.getMonth() + 1) + "/" + dt.getDate();
+    
+    
+
+    
     const newProject = new Project({
         name: req.body.name,
         description: req.body.description,
@@ -71,6 +77,8 @@ router.post('/project', ensureLoggedIn('/login'), (req, res, next) => {
         admin: req.user._id, // the user who registers the project
         contributors: req.user._id // the admin is also a contributor 
     });
+    
+    
 
     newProject.save((err) => {
         if (err) {

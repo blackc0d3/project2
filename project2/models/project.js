@@ -18,7 +18,10 @@ const ProjectSchema = new Schema({
     }, // default: creator (or 1st author)
     goal: String,
     deadline: Date,
-    keywords: [String],
+    keywords: [{
+        type: String,
+        required: true
+    }],
     isPublished: {
         type: Boolean,
         default: false

@@ -3,13 +3,20 @@
     <div class="project-row row">
         <h2 class="text-center myprojects-title">Current projects</h2>
         <!-- cambiar -->
-        <% users.projects.forEach((project) => { %>
+        <% projects.forEach((project) => { %>
 
             <div class="col-sm-3 home-project-box project-container">
                 <div class="title-project">
                     <a class="title" href="/profile/project/<%= project._id %>">
                         <strong><%= project.name %></strong>
                     </a>
+                    <br> by <span class="admin"><%
+                    if(project.admin.name || project.admin.lastname){%>
+                        <%= project.admin.name + '  ' + project.admin.lastname %>
+                        <% } else {%>
+                        <%= project.admin.username%>
+                        <% } %>
+                    </span>
                 </div>
                 <div class="images-containter-project">
                     <div class="admin-pic-project">

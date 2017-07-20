@@ -1,24 +1,24 @@
-<% include ../partials/header %>
+<% include ../partials/header2 %>
     <h1>New Project</h1>
     <div class="container">
         <div class="row">
             <div class="col-sm-6 centered-form">
                 <form action='/profile/project' method="post">
                     <div class="form-group">
-                        <label for="name">Name of the project</label>
-                        <input type="text" name="name" class="form-control">
+                        <label for="name">Name of the project*</label>
+                        <input type="text" name="name" class="form-control" placeholder="Project title">
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea id="description" name="description" class="form-control"></textarea>
+                        <input id="description" name="description" class="form-control" placeholder="Brief description"></input>
                     </div>
                     <div class="form-group">
-                        <label for="goal">Goal</label>
-                        <input type="text" name="goal" class="form-control">
+                        <label for="goal">Goal(s)</label>
+                        <input type="text" name="goal" class="form-control" placeholder="Main objective(s)">
                     </div>
                     <div class="form-group">
-                        <label for="keywords">Main keywords</label>
-                        <textarea id="keywords" name="keywords" class="form-control"></textarea>
+                        <label for="keywords">Main keywords*</label>
+                        <input id="keywords" name="keywords" class="form-control" placeholder="keyword1, keyword2, ...."></input>
                     </div>
                     <div class="form-group">
                         <label for="deadline">Deadline</label>
@@ -27,8 +27,10 @@
                     <br>
                     <div class="form-group">
                         <button type="submit">Create Project</button>
+                        <h5>* Mandatory fields</h5>
                     </div>
                 </form>
+                
             </div>
         </div>
     </div>
