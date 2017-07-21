@@ -699,6 +699,33 @@ progress {
     text-align: center;
 }
 
+.signup-form2 {
+    width: 60%;
+    margin: 0 auto;
+    padding: 5% 0 2.5% 0;
+}
+
+.form-group2 {
+    color: #832161;
+    font-size: 2.2rem;
+    text-align: left;
+    
+}
+
+.form-group2 > label {
+    padding: 15px;
+}
+.form-control2{
+    width: 100%;
+    height: 10vh;
+    color: #777;
+    overflow: scroll;
+    padding: 7%;
+    border-radius: 15px;
+    border: 0;
+}
+
+
 .centered-form{
     text-align: left;
     margin-top: 0;

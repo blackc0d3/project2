@@ -55,9 +55,6 @@ router.get('/myprojects', (req, res) => {
 });
 
 
-
-
-
 router.get('/newproject', (req, res) => {
     res.render('profile/newproject');
 });
@@ -65,11 +62,7 @@ router.get('/newproject', (req, res) => {
 router.post('/project', ensureLoggedIn('/login'), (req, res, next) => {
     //    const shortDate = new Date();
     //    dt.getFullYear() + "/" + (dt.getMonth() + 1) + "/" + dt.getDate();
-
-
-
-
-    const newProject = new Project({
+  const newProject = new Project({
         name: req.body.name,
         description: req.body.description,
         goal: req.body.goal,
@@ -79,9 +72,6 @@ router.post('/project', ensureLoggedIn('/login'), (req, res, next) => {
         admin: req.user._id, // the user who registers the project
         contributors: req.user._id // the admin is also a contributor 
     });
-
-
-
     newProject.save((err) => {
         if (err) {
             res.render('profile/newproject', {
@@ -121,26 +111,14 @@ const userId = req.user._id;
                         next(err);
                         return;
                     }
-
                     res.render('profile/show', {
-                        //                      picture: lastPic,
                         project,
                         newProject,
                         userId
-                        //                      user,
-                        //                      projects
-
                     });
                 });
-
-
         });
-
 });
-
-
-
-
 
 
 router.post('/edit', (req, res, next) => {
@@ -186,8 +164,6 @@ router.post('/', upload.single('photo'), function (req, res, next) {
         pic_path: `/uploads/${filename}`
     };
 
-
-
     pic.save((err) => {
         User.findByIdAndUpdate(userId, filePath, {
             new: true
@@ -219,5 +195,25 @@ router.get('/myprofile', (req, res) => {
         });
     });
 });
+
+
+// Contribution requests
+
+router.get('/project/:id/contributor', (req, res) => {
+  res.render('profile/contribute');
+});
+
+
+
+
+
+
+router.post('/project/:id/contributor',(req,res)=>{
+    
+    res.render('profile/request');
+    
+});
+
+
 
 module.exports = router;

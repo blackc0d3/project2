@@ -1,15 +1,20 @@
-<% include ../partials/header %>
-<div class="info-container">
-  <div class="upper-container-request">
-    <h1>Describe your contribution</h1>
-  </div>
-  <div class="lower-container-request">
-    <div class="form-group">
-        <label for="contribution">Describe your contribution</label>
-        <input id="description" name="description" class="form-control" placeholder="Brief description"></input>
+<% include ../partials/header3   %>
+    <div class="info-container">
+        <div class="upper-container-request">
+            <h1>Describe your contribution</h1>
+        </div>
+<!--        <form action="/profile/contribute" method="post">-->
+            <div class="signup-form2">
+                <div class="form-group2">
+                    <label for="contribution">Want to participate?</label>
+                    <input id="contribution" name="contribution" class="form-control2" placeholder="In which way are you contributing to the project?"></input>
+                </div>
+            </div>
+
+            <div class="signup-form">
+               <a href="/profile/myprojects">
+                <input class="btn btn-default" type="submit" value="Send request">
+<!--        </form>-->
+        </div>
+
     </div>
-  </div>
-  <div class="form-group">
-       <button type="submit">Send Request</button>
-  </div>
-</div>
