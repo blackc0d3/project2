@@ -1,71 +1,39 @@
 <nav class="navbar">
-    <div class="container-fluid">
-<!--
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#home-nav" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
--->
-
-        <div class="collapse navbar-collapse" id="home-nav">
-            <ul class="nav navbar-nav">
-
-                <li class="nav-logo">
-                    <img class="nav-logo-image" src="images/megaphone.png" alt="Shout it Logo">
-                    <span>Shout it!</span>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/">&nbsp;<span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Home</a>
-                    </li>                
-                <li><a href="/login">&nbsp;<span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Login</a></li>
-            </ul>
-        </div>
+    <div class="collapse navbar-collapse" id="home-nav">
+        <a class="img-logo" href="/">
+            <img class="nav-logo-image" src="/images/logo_720.png" alt="Shout it Logo">
+        </a>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="/login">&nbsp;<span class="glyphicon glyphicon-lock"></span>&nbsp;&nbsp;Login</a>
+            </li>
+        </ul>
     </div>
 </nav>
 
-<div class="title-signin">
-    <div class="info-title">
-        <h1>We are almost there!</h1>
+<div class="info-container">
+    <div class="login-form">
+        <form action="/signup" method="post">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" class="form-control" placeholder="researcher123">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" name="email" class="form-control" placeholder="researcher123@upc.edu">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Your password">
+            </div>
+            <br>
+            <input class="btn btn-default" type="submit" value="Sign up">
+        </form>
     </div>
-</div>
-
-<div class="login-container container">
-    <div class="row">
-        <div class="col-sm-6 centered-form">
-            <form action="/signup" method="post">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" class="form-control" placeholder="researcher123">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" name="email" class="form-control" placeholder="researcher123@upc.edu">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" class="form-control" placeholder="Your password">
-                </div>
-                <% if (typeof message !== "undefined") { %>
-                    <div class="error-message"><%= message %></div>
-                <% } %>  <!-- Revisar si esto no era de flash -->
-                <br><br>
-                <div>
-                    <input class="login btn btn-default" type="submit" value="Sign Up">
-                </div>
-            </form>
+    <div>
+        <div class="lower-text">
+            <p>Already have an account?</p>&nbsp;&nbsp;<a href="/login">Login here&nbsp;&nbsp;<span class="glyphicon glyphicon-lock"></span></a>
         </div>
     </div>
+
 </div>
-<br>
-<div class="no-account">Already have an account?&nbsp;&nbsp;<a href="/login">Login here&nbsp;<span class="glyphicon glyphicon-log-in"></span></a></div>

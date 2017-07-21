@@ -1,22 +1,40 @@
 <% include ../partials/header2 %>
-<h1>My profile</h1>
-<br>
-<div class="upper-container">
-  <h2 id="Name"><%= user.name %> <%= user.lastname %></h2>
-</div>
+    <div class="index-container">
 
-<div class="middle-container">
 
-<div class="left-side">
-    <img id="profilepic" src="<%= user.pic_path %>" alt="<%= user.pic_name %>" />
-</div>
+        <div class="username-container">
+            <% if(user.name){%>
+                <%= user.name %>
+                    <% } else {%>
+                        <%= user.username%>
+                            <% } %>
+        </div>
+        <div class="userpic-container">
+            <img id="profilepic2" src="<%= user.pic_path %>" alt="<%= user.pic_name %>" />
+        </div>
 
-<div class="right-side">
-  <h2 class="myprofile telephone">Telephone: <%= user.telephone %></h2>
-  <h2 class="myprofile campus">Campus: <%= user.campus %></h2>
-  <h2 class="myprofile department">Department: <%= user.department %></h2>
-  <h2 class="myprofile email">Email: <%= user.email %></h2>
-  <h2 class="myprofile skills">Skills: <%= user.skills %></h2>
-</div>
+        <div class="userinfo-container">
+            <h3 class="data">Telephone:</h3>
+            <h2 class="telephone">
+                <%= user.telephone %>
+            </h2>
+            <h3 class="data">Campus:</h3>
+            <h2 class="campus">
+                <%= user.campus %>
+            </h2>
+            <h3 class="data">Department:</h3>
+            <h2 class="department">
+                <%= user.department %>
+            </h2>
+            <h3 class="data">Email:</h3>
+            <h2 class="email">
+                <%= user.email %>
+            </h2>
+            <h3 class="data">Skills:</h3>
+            <h2 class="skills">
+                <%= user.skills %>
+            </h2>
+        </div>
 
-</div>
+
+    </div>

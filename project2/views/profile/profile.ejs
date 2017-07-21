@@ -1,55 +1,44 @@
 <% include ../partials/header %>
-
-    <div class="welcome-msg">
-        <div class="image-upload-container">
-            <form action="/profile" method="post" enctype="multipart/form-data">
-                <div class="user-pic-profile">
-                    <img id="profilepic" src="<%= user.pic_path %>" alt="<%= user.pic_name %>" />
-                    <input class="choose-pic-button" type="file" name="photo">
-                    <button class="upload-pic-button" type="submit"><span class="glyphicon glyphicon-upload"></span></button>
-
+    <div class="info-container">
+        <div class="welcome-msg">
+            <div class="user-pic-profile">
+                <img id="profilepic" src="<%= user.pic_path %>" alt="<%= user.pic_name %>" />
+                <div class="hello">
+                    Hello&nbsp;&nbsp;
                 </div>
-            </form>
-        </div>
-        <div class="hello">
-            Hello&nbsp;&nbsp;
-        </div>
-        <div class="username">
-            <%
-            if(user.name){%>
-                <%= user.name %>
-                    <% } else {%>
-                        <%= user.username%>
-                            <% } %>
-
-        </div>
-
-        <!--
-        <div class="pic-update">
-            <div class="form-group">
-                <h2>Upload your photo</h2>
-                <form action="/profile" method="post" enctype="multipart/form-data">
-                
-                    <input type="file" name="photo">
-                    <button type="submit">Upload a picture...<span class="glyphicon glyphicon-picture"></span></button>
-                </form>
+                <div class="username">
+                    <%
+                        if(user.name){%>
+                        <%= user.name %>
+                            <% } else {%>
+                                <%= user.username%>
+                                    <% } %>
+                </div>
             </div>
         </div>
--->
-    </div>
+        <form action="/profile" method="post" enctype="multipart/form-data">
+            <div class="pic-button">
+                <input class="choose-pic-button" type="file" name="photo">
+                <button class="upload-pic-button" type="submit"><span class="glyphicon glyphicon-upload"></span></button>
+            </div>
+
+        </form>
 
 
-    <div class="user-options">
-        <div class="option-box">
-            <a href="/profile/myprofile">Check your Profile&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-user"></span></a>
+        <div class="user-options">
+            <div class="option-box">
+                <a href="/profile/newproject">Start a project&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-list-alt"></span></a>
+            </div>
+            <div class="option-box">
+                <a href="/profile/myprojects">My Projects&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span></a>
+            </div>
+            <div class="option-box">
+                <a href="/profile/projects">All Projects&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span></a>
+            </div>
+            <div class="option-box">
+                <a href="/profile/requests">Pending requests&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></a>
+            </div>
+
         </div>
-        <div class="option-box">
-            <a href="/profile/projects">All Projects&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span></a>
-        </div>
-        <div class="option-box">
-            <a href="/profile/myprojects">My Projects&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span></a>
-        </div>
-        <div class="option-box">
-            <a href="/profile/newproject">Start a project&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-list-alt"></span></a>
-        </div>
+
     </div>

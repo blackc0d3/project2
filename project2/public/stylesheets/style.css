@@ -38,6 +38,14 @@ nav.navbar {
     padding-top: 15px;
 }
 
+.logout-btn{
+    color:#777;
+    padding: 15px;
+    background-color: ghostwhite;
+    border: 0;
+    
+}
+
 .login {
     font-weight: bolder;
     color: darkslategray;
@@ -76,12 +84,6 @@ nav.navbar {
     color: ghostwhite;
 }
 
-.info-container {
-    /*container information*/
-    width: 100vw;
-    height: 55vh;    
-}
-
 .container-fluid {
     padding-top: 0.1%;
 }
@@ -96,16 +98,19 @@ nav.navbar {
     width: 50%;
 }
 
+
 /* ##### #### #### ####*/
 
 
 /* Read more button*/
+
 .btn-default {
     border-radius: 5px;
     background-color: #777;
     color: ghostwhite;
     padding: 1%;
 }
+
 .btn-default:hover {
     border-radius: 5px;
     background-color: ghostwhite;
@@ -115,6 +120,7 @@ nav.navbar {
 
 
 /* Join now button */
+
 .join-button {
     width: 25vh;
     color: #832161;
@@ -122,11 +128,7 @@ nav.navbar {
 }
 
 
-
-
 /* ##### #### #### ####*/
-
-
 
 .project-row {
     margin-top: 3%;
@@ -143,7 +145,7 @@ nav.navbar {
 .home-project-box {
     float: left;
     border: 1px solid #d3d3d3;
-    height: 300px;
+    height: 400px;
     margin: 30px 4%;
     padding: 0;
 }
@@ -162,8 +164,7 @@ nav.navbar {
     text-transform: lowercase;
     max-height: 15%;
     margin: 0 15px 0 0;
-    padding: 0 15px 0 15px;
-    white-space: pre-line;
+    padding: 15px;
     overflow: scroll;
     text-align: center;
 }
@@ -175,7 +176,8 @@ nav.navbar {
 .images-containter-project {
     width: 100%;
     height: 15%;
-    padding: 0 10px 0 10px;
+    padding-left: 10%;
+    
 }
 
 .admin-pic-project>img {
@@ -186,7 +188,7 @@ nav.navbar {
     border: 1px solid white;
     border-radius: 50%;
     object-fit: cover;
-    margin: 0 3px 0 0;
+    margin: 0 5px;
 }
 
 .uni-pic-project>img {
@@ -197,7 +199,7 @@ nav.navbar {
     border: 1px solid white;
     border-radius: 50%;
     object-fit: cover;
-    margin: 0 3px 0 3px;
+    margin: 0 5px;
 }
 
 .department-pic-project>img {
@@ -208,7 +210,7 @@ nav.navbar {
     border: 1px solid white;
     border-radius: 50%;
     object-fit: cover;
-    margin: 0 0 0 3px;
+    margin: 0 5px;
 }
 
 .project-info-wrapper {
@@ -242,7 +244,7 @@ nav.navbar {
     margin-top: 5px;
     border: 1px solid darkslategray;
     border-radius: 5px;
-    background: white;
+    background: ghostwhite;
     white-space: pre-line;
     overflow: scroll;
 }
@@ -281,7 +283,7 @@ nav.navbar {
     margin-top: 5px;
     border: 1px solid black;
     border-radius: 5px;
-    background: white;
+    background: ghostwhite;
     white-space: pre-line;
     overflow: auto
 }
@@ -358,9 +360,9 @@ progress {
 }
 
 .welcome-msg {
-    width: 65vw;
-    height: 30vh;
-    padding-left: 50%;
+    width: 45vw;
+    height: 30%;
+    margin-left: 20%;
 }
 
 .user-pic-profile>img {
@@ -370,7 +372,7 @@ progress {
     width: 150px;
     height: 150px;
     margin-left: 50px;
-    border: 1px solid red;
+    
 }
 
 .image-upload-container {
@@ -386,8 +388,25 @@ progress {
     height: 150px;
 }
 
+.pic-button {
+    width: 10%;
+    padding: 1px;
+    margin: 0 0 0 22%;
+    
+}
+
 .choose-pic-button {
-    width: 10vw;
+    width: 70%;
+    color:transparent;
+    float: left;
+    padding-top: 1px;
+    
+    
+}
+
+.upload-pic-button {
+    background-color: #777;
+    color: ghostwhite;    
 }
 
 .hello {
@@ -397,6 +416,52 @@ progress {
     color: #777;
     padding-top: 2%;
     padding-left: 4%;
+}
+
+.username-container {
+    height: 5vh;
+    padding: 0;
+    font-size: 5vh;
+    margin-top: 2vh;
+    text-align: left;
+    margin-left: 33%;
+    color: #832161;
+    text-transform: lowercase;
+}
+.username-container:first-letter {
+    text-transform: uppercase;
+}
+
+.userpic-container {
+    width: 12%;
+    padding: 0;
+    margin-top: 2vh;
+    text-align: left;
+    margin-left: 33%;
+    float: left;
+}
+
+.userinfo-container {
+    width: 15%;
+    max-width: 30%;
+    height: 90%;
+    margin-left: 50%;
+    text-align: left;
+}
+.userinfo-container>h2 {
+    min-height: 32px;
+    padding: 10px;
+    border: 1px solid #777;
+    background-color: ghostwhite;
+    border-radius: 15px;
+    font-size: 16px;
+    overflow: scroll;
+}
+.userinfo-container>h3 {
+    width: 100%;
+    height: auto;
+
+
 }
 
 .username {
@@ -417,14 +482,11 @@ progress {
 }
 
 .user-options {
-    clear: both;
     width: 40vw;
-    height: 40vh;
-    clear: both;
+    height: 60%;
     font-size: 2rem;
-    margin-left: 29%;
-    position: relative;
-    top: -70px;
+    margin: 0 auto;
+    padding: 1%
 }
 
 .option-box {
@@ -531,9 +593,18 @@ progress {
     margin-top: 40px;
 }
 
+.info-container {
+    background-color: #E3ECFA;
+    width: 95%;
+    height: 80vh;
+    margin: 0 auto;
+    position: relative;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 35px 0;
+}
 
-
-.info-container-left {
+.info-container-inside {
     width: 33.33%;
     display: block;
     margin: 0px;
@@ -542,36 +613,18 @@ progress {
     text-align: center;
 }
 
-.info-container-middle {
-    width: 33.33%;
-    display: block;
-    margin: 0px;
-    float: left;
-    padding: 50px 40px 50px;
-    text-align: center;
-}
-
-.info-container-right {
-    width: 33.33%;
-    display: block;
-    margin: 0px;
-    float: left;
-    padding: 50px 40px 50px;
-    text-align: center;
-}
-
-h1 {
+.info-container-inside > h1 {
     color: #832161;
     margin-left: 25px;
     font-size: 50px;
 }
 
-h2 {
+.info-container-inside > h2 {
     color: #832161;
     font-size: 30px;
 }
 
-p {
+.info-container-inside > p {
     margin-top: 15px;
     color: gray;
     font-size: 17px;
@@ -585,72 +638,140 @@ p {
     position: relative;
 }
 
-.signup-form{
-  width: 33.33%;
-  display: block;
-  margin: 0px;
-  float: left;
-  margin-left: 34%;
-  margin-top: 8%;
-  padding: 10px 30px 50px;
-  text-align: center;
+
+
+/* Sign up form */
+.signup-form {
+    width: 20%;
+    display: block;
+    margin: 0 auto;
+    padding: 5% 0 2.5% 0;
+    text-align: center;
 }
-.submit{
-  transition: all 0.5s;
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
+
+.centered-form{
+    text-align: left;
+    margin-top: 0;
+    
 }
-.form-group{
-  color:#832161;
+.create-button{
+    margin: 0 auto;
+    text-align: center;
 }
-#img-info{
-  box-sizing: border-box;
-  max-width: 160px;
-  max-height: 90px;
+
+.new-project-title{
+    font-size: 3rem;
+    float: left;
+    margin-left: 35%
 }
-.info-button{
-  border: 1px solid blue;
+
+.login-form {
+    width: 20%;
+    display: block;
+    margin: 0 auto;
+    padding: 2.5% 0 1.5% 0;
+    text-align: center;
 }
-#img-info-title{
-  box-sizing: border-box;
-  max-width: 70px;
-  max-height: 70px;
+
+.lower-text {
+    width:35%;
+    text-align: center;    
+    margin: 0 auto;
+    padding: 10px;
 }
-.form-group{
-  font-size: 16px;
+
+.lower-text > a {
+    color: #832161;
 }
+
+
+
+
+.btn-default {
+    border-radius: 5px;
+    background-color: #777;
+    color: ghostwhite;
+    padding: 1%;
+}
+
+.btn-default:hover {
+    border-radius: 5px;
+    background-color: ghostwhite;
+    color: #777;
+    padding: 1%;
+}
+
+
+
+
+.btn{
+    padding:10px;
+}
+
+.btn:hover{
+    padding:10px;
+}
+
+
+.form-group {
+    color: #832161;
+    font-size: 2.2rem;
+    text-align: left;
+}
+
+.form-group > label {
+    
+}
+
+#img-info {
+    box-sizing: border-box;
+    max-width: 160px;
+    max-height: 90px;
+}
+
+.info-button {
+    
+}
+
+#img-info-title {
+    box-sizing: border-box;
+    max-width: 70px;
+    max-height: 70px;
+}
+
 
 body {
-  background-color: white;
+    background-color: ghostwhite;
 }
 
-h1,h2,h3,h4,h5 {
-  margin-top: 0;
+h1, h2, h3, h4, h5 {
+    margin-top: 0;
 }
 
 .navbar {
-  background-color: white;
-  border-radius: 0;
+    background-color: ghostwhite;
+    border-radius: 0;
 }
 
 .main {
-  background-color: white;
+    background-color: ghostwhite;
 }
 
-.join-now {
-  text-align: center;
-  margin: 0;
+.join-now > a {
+    text-align: center;
+    margin: 0;
+    font-size: 45px;
+    color: #832161;;
 }
+
 
 /* Logo central */
-.img-logo{  
+
+.img-logo {
     position: absolute;
     left: 48%;
     top: 80%;
     z-index: 200;
-    
 }
 
 .index-container {
@@ -658,86 +779,85 @@ h1,h2,h3,h4,h5 {
     width: 95%;
     height: 65vh;
     margin: 0 auto;
-/*    padding: 0 30%;*/
+    /*    padding: 0 30%;*/
     position: relative;
-    
     font-size: 1.5rem;
     text-align: center;
-    
     padding: 35px 0;
-    
-    
 }
 
-.container-fluid-top{
-  height: 70px;
+.container-fluid-top {
+    height: 70px;
 }
 
-.navbar-right{
-  margin-top: 10px;
-  padding-left: 15px;
-}
-.data{
-  font-size: 18px;
-  color:#777;
-}
-.upper-container-project{
-  height: 190px;
-}
-.upper-container-project-left{
-  float: left;
-  height:190px;
-
-}
-.upper-container-project-right{
-  height:190px;
-}
-#user-name{
-  color:#777;
-  text-align: center;
-}
-#project-name{
-  text-align: center;
-  color:#832161;
-  padding-top: 5%;
-
-}
-.middle-container-project{
-  height:40vh;
-}
-.middle-container-description{
-  float: left;
-  height:40vh;
-  width: 50%;
-
-}
-.middle-container-right{
-  margin:0;
-  height:40vh;
-  width: 50%;
-  float: left;
+.navbar-right {
+    margin-top: 10px;
+    padding-left: 15px;
 }
 
-#keywords{
-  height:50%;
-  font-size: 20px;
-  color:#777;
-  text-align: left;
-}
-#contributors{
-  height:50%;
-  font-size: 20px;
-  color:#777;
-  text-align: left;
-}
-#project-description{
-  font-size: 20px;
-  color:#777;
-  text-align: left;
-  padding-top:5%;
-  
+.data {
+    font-size: 18px;
+    color: #777;
 }
 
+.upper-container-project {
+    height: 190px;
+}
 
+.upper-container-project-left {
+    float: left;
+    height: 190px;
+}
 
+.upper-container-project-right {
+    height: 190px;
+}
 
+#user-name {
+    color: #777;
+    text-align: center;
+}
+
+#project-name {
+    text-align: center;
+    color: #832161;
+    padding-top: 5%;
+}
+
+.middle-container-project {
+    height: 40vh;
+}
+
+.middle-container-description {
+    float: left;
+    height: 40vh;
+    width: 50%;
+}
+
+.middle-container-right {
+    margin: 0;
+    height: 40vh;
+    width: 50%;
+    float: left;
+}
+
+#keywords {
+    height: 50%;
+    font-size: 20px;
+    color: #777;
+    text-align: left;
+}
+
+#contributors {
+    height: 50%;
+    font-size: 20px;
+    color: #777;
+    text-align: left;
+}
+
+#project-description {
+    font-size: 20px;
+    color: #777;
+    text-align: left;
+    padding-top: 5%;
+}
