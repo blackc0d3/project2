@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const moment = require('moment');
-const {
-    ensureLoggedIn
-} = require('connect-ensure-login');
+const {ensureLoggedIn} = require('connect-ensure-login');
 const multer = require('multer');
 
 // Models
