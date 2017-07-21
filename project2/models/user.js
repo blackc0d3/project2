@@ -13,7 +13,11 @@ const UserSchema = new Schema({
     username: String,
     password: String,
     description: String,
-    img: String, 
+    img: String,
+    pictures:[{
+        type: Schema.Types.ObjectId,
+        ref: 'Picture'
+    }],
     pic_path: String,
     pic_name: String,
     skills: [{

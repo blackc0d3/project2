@@ -1,8 +1,9 @@
-<% include ../partials/header2 %>
-    <h1>Enhance your profile</h1>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6 centered-form">
+<% include ../partials/header3 %>
+    <div class="home-heading2">
+        <br>
+        <div class="enhancer">Enhance your profile</div>
+        <div class="container">
+            <div class="col-sm-4 centered-form edit-form">
                 <form action="/profile/edit" method="post">
                     <div class="form-group">
                         <label for="name">Name</label>
@@ -14,33 +15,36 @@
                     </div>
                     <div class="form-group">
                         <label for="telephone">Telephone &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-phone-alt"></span></label>
-                        <textarea id="description" name="telephone" class="form-control" placeholder="1234567890"></textarea>
+                        <input id="description" name="telephone" class="form-control" placeholder="1234567890"></input>
                     </div>
                     <div class="form-group">
                         <label for="campus">Campus</label><br>
                         <select name="campus" id="campus">
-            <% campusTypes.forEach((campus) => { %>
-              <option type="text" value="<%= campus %>" class="form-control"><%= campus %></option>
-            <%  }) %>
+                        <% campusTypes.forEach((campus) => { %>
+                            <option type="text" value="<%= campus %>" class="form-control"><%= campus %></option>
+                        <%  }) %>
           </select>
                     </div>
                     <div class="form-group">
                         <label for="department">Department</label><br>
                         <select name="department" id="department">
-            <% departmentTypes.forEach((department) => { %>
-              <option type="text" value="<%= department %>" class="form-control"><%= department %></option>
-            <%  }) %>
+                        <% departmentTypes.forEach((department) => { %>
+                          <option type="text" value="<%= department %>" class="form-control"><%= department %></option>
+                        <%  }) %>
           </select>
                     </div>
                     <div class="form-group">
                         <label for="skills">Your main skills &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-th-list"></span></label>
-                        <textarea id="skills" name="skills" class="form-control" placeholder="skill1, skill2, skill3, ..."></textarea>
+                        <input id="skills" name="skills" class="form-control" placeholder="skill1, skill2, skill3, ...">
                     </div>
 
-                    <div class="form-group">
-                        <button type="submit">Submit changes &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-save"></span></button>
+               
+
+                    <div class="form-group create-button">
+                        <input class="btn btn-default" type="submit" value="Submit changes">
                     </div>
                 </form>
             </div>
         </div>
+    </div>
     </div>

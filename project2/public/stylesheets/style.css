@@ -256,6 +256,11 @@ nav.navbar {
 .contributors-container {
     width: 100%;
     text-align: center;
+    clear: both;
+    position: absolute;
+    top: 78%;
+    letter-spacing: 1px;
+    
 }
 
 .contributors-title {}
@@ -275,6 +280,16 @@ nav.navbar {
 }
 
 .deadline-title {}
+.contributor-button{
+    float: left;
+    padding: 70px;
+}
+.contributor-button2{
+    text-align: left;
+    padding: 70px;
+    width: 30%;
+    margin-left: 10%;
+}
 
 .deadline {
     float: left;
@@ -288,8 +303,34 @@ nav.navbar {
     overflow: auto
 }
 
-.admin-title {}
+.admin-title {
+    width: 35%;
+    color: #777;
+    
+    height: 150px;
+    vertical-align: bottom;
+}
 
+.admin-title > .admin {
+    color: #832161;
+    font-weight: bolder;
+}
+
+.zero {
+    margin: 2% 0 0 5%;
+    clear: both;
+}
+
+.project-info-wrapper>.one {
+    display: block;
+    margin-top: 20px;
+}
+.project-info-wrapper>.two {
+    display: block;
+    margin-top: 20px;
+    font-style: italic;
+    font-weight: lighter;
+}
 .project-info-wrapper>.description {
     display: block;
     margin-top: 20px;
@@ -449,17 +490,18 @@ progress {
     text-align: left;
 }
 .userinfo-container>h2 {
-    min-height: 32px;
+    width: 100%;
+    height: auto;
+}
+.userinfo-container>h3 {
+ min-height: 32px;
     padding: 10px;
     border: 1px solid #777;
     background-color: ghostwhite;
     border-radius: 15px;
-    font-size: 16px;
+    font-size: 14px;
     overflow: scroll;
-}
-.userinfo-container>h3 {
-    width: 100%;
-    height: auto;
+    color: #777;
 
 
 }
@@ -638,8 +680,16 @@ progress {
     position: relative;
 }
 
+.edit-form {
+    margin-left:33%;
+    padding: 3% 0;
+}
 
-
+.enhancer{
+    font-size: 3rem;
+    margin-left: 20%;
+    margin-top: 2%;
+}
 /* Sign up form */
 .signup-form {
     width: 20%;
@@ -796,7 +846,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .data {
-    font-size: 18px;
+    font-size: 16px;
     color: #777;
 }
 
@@ -805,8 +855,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .upper-container-project-left {
-    float: left;
-    height: 190px;
+    margin-left: 10%;
 }
 
 .upper-container-project-right {

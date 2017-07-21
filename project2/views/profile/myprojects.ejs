@@ -1,7 +1,7 @@
 <% include ../partials/header3 %>
     <h1>Your activity</h1>
     <div class="project-row row">
-        <h2 class="text-center myprojects-title">Current projects<%= users %></h2>
+        <h2 class="text-center myprojects-title">Current projects</h2>
         
         <!-- cambiar -->
         
@@ -15,14 +15,22 @@
                 </div>
                 <div class="images-containter-project">
                     <div class="admin-pic-project">
-                        <!--                        <img src="<%= project.admin.pic_path %>">-->
-                        <img src="/images/UPC_Logo.png">
+                    <img src="<%= users.pic_path %>">
+                        
                     </div>
                     <div class="uni-pic-project">
                         <img src="/images/UPC_Logo.png">
                     </div>
                     <div class="department-pic-project">
-                        <img src="/images/UPC_Logo.png">
+                        <% if(users.campus == "North"){%>  
+                        <img src="/images/Camins.png">
+                        <% } else if (users.campus == "South") {%>
+                        <img src="/images/Etsab.png">
+                        <% } else if (users.campus == "Besòs") {%>
+                        <img src="/images/EUETIB.png">
+                        <% } else {%>
+                        <img src="/images/Lostworld.png">
+                        <% } %>
                     </div>
                 </div>
                 <br>
@@ -32,6 +40,7 @@
                         <span class="light-text description"><%= project.description %></span>
                     </div>
                     <div class="description-project">
+                       <br>
                         <h5>Keywords:</h5>
                         <span class="light-text keywords"><%= project.keywords %></span>
                     </div>

@@ -50,6 +50,8 @@ router.get('/myprojects', (req, res) => {
                 users
             });
         });
+
+
 });
 
 
@@ -61,12 +63,12 @@ router.get('/newproject', (req, res) => {
 });
 
 router.post('/project', ensureLoggedIn('/login'), (req, res, next) => {
-//    const shortDate = new Date();
-//    dt.getFullYear() + "/" + (dt.getMonth() + 1) + "/" + dt.getDate();
-    
-    
+    //    const shortDate = new Date();
+    //    dt.getFullYear() + "/" + (dt.getMonth() + 1) + "/" + dt.getDate();
 
-    
+
+
+
     const newProject = new Project({
         name: req.body.name,
         description: req.body.description,
@@ -77,8 +79,8 @@ router.post('/project', ensureLoggedIn('/login'), (req, res, next) => {
         admin: req.user._id, // the user who registers the project
         contributors: req.user._id // the admin is also a contributor 
     });
-    
-    
+
+
 
     newProject.save((err) => {
         if (err) {
@@ -92,7 +94,7 @@ router.post('/project', ensureLoggedIn('/login'), (req, res, next) => {
                     user.projects.push(newProject);
                     user.save();
                     res.redirect(`/profile/project/${newProject._id}`);
-            });
+                });
         }
     });
 });
@@ -100,26 +102,46 @@ router.post('/project', ensureLoggedIn('/login'), (req, res, next) => {
 
 // "/:projectID"
 router.get('/project/:id', (req, res, next) => {
-    Project.findById(req.params.id, (err, project) => {
-        if (err) {
-            return next(err);
-        }
-
-        project.populate('_admin', (err, project) => {
+const userId = req.user._id;
+    Project.findById({
+            "_id": req.params.id
+        })
+        .populate("admin")
+        .exec((err, newProject) => {
             if (err) {
-                return next(err);
+                next(err);
+                return;
             }
-            Picture.find((err, pictures) => {
-                var lastPic = pictures[pictures.length - 1];
-                res.render('profile/show', {
-                    picture: lastPic,
-                    project
+            User.findById({
+                    "_id": newProject.admin._id
+                })
+                .populate("projects")
+                .exec((err, project) => {
+                    if (err) {
+                        next(err);
+                        return;
+                    }
+
+                    res.render('profile/show', {
+                        //                      picture: lastPic,
+                        project,
+                        newProject,
+                        userId
+                        //                      user,
+                        //                      projects
+
+                    });
                 });
-            });
+
 
         });
-    });
+
 });
+
+
+
+
+
 
 router.post('/edit', (req, res, next) => {
     const userId = req.user._id;
@@ -163,7 +185,7 @@ router.post('/', upload.single('photo'), function (req, res, next) {
     var filePath = {
         pic_path: `/uploads/${filename}`
     };
-    
+
 
 
     pic.save((err) => {
@@ -178,7 +200,7 @@ router.post('/', upload.single('photo'), function (req, res, next) {
             }
             if (!user) {
                 return next(new Error("404"));
-            } 
+            }
             return res.redirect('/profile');
         });
     });
